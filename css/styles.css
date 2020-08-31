@@ -179,7 +179,12 @@ footer {
 }
 
 @media (max-width: 576px) {
+	
 	#image-wrapper img {
 		height: 250px;
+	}
+
+	#navbar {
+		font-size: 1.5em;
 	}
 }
