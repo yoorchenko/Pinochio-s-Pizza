@@ -115,8 +115,98 @@ footer {
 }
 
 
+
+
+
+/* Category */
+
+#category-name {
+	background-color: #34332A;
+	color: #EDF2F4;
+	text-align: center;
+	border-radius: 65px;
+	margin: 20px 0;
+	padding: 0px;
+}
+
+#category-name span {
+	font-family: Montserat;
+	font-size: 2em;
+}
+
+#dishes img {
+	width: 100%;
+	height: 200px;
+	object-fit: cover;
+}
+
+#dish-order {
+	width: 100%;
+	background-color: #D62828;
+	color: white;
+	text-align: center;
+	height: 40px;
+	line-height: 40px;
+	font-size: 20px;
+}
+
+#dishes section > div {
+	position: relative;
+	margin-bottom: 15px;
+}
+
+#dish-name {
+	position: absolute;
+	width: 100%;
+	height: 30px;
+	bottom: 40px;
+	background-color: rgba(0,0,0, 0.6);
+	color: white;
+	text-align: center;
+
+}
+
+
+/* Dish */
+#item-name {
+	font-size: 30px;
+}
+
+#dish-img {
+	margin-top: 20px;
+}
+
+#dish-img img {
+	width: 100%;
+	height: 350px;
+	object-fit: cover;
+}
+
+#customization select {
+	width: 60%;
+	margin-bottom: 20px;
+}
+
+#total-price {
+	font-size: 30px;
+}
+
+#confirm-button {
+	width: 60%;
+	text-align: center;
+	height: 40px;
+	line-height: 40px;
+	color: white;
+	background-color: #D62828;
+	margin-top: 15px;
+}
+
+
+/* Media Queries */
+
 @media (max-width: 1200px){
 	
+	/* Index */
 	#tiles-container img {
 		height: 200px;
 	}
@@ -129,6 +219,7 @@ footer {
 
 @media (max-width: 992px) {
 	
+	/* Index */
 	#tiles-container img {
 		height: 170px;
 	}
@@ -144,6 +235,8 @@ footer {
 }
 
 @media (max-width: 768px) {
+
+	/* Index */
 	#image-wrapper img {
 		height: 300px;
 	}
@@ -177,6 +270,7 @@ footer {
 
 @media (max-width: 576px) {
 	
+	/* Index */
 	#image-wrapper img {
 		height: 250px;
 	}
@@ -184,53 +278,4 @@ footer {
 	#navbar {
 		font-size: 1.5em;
 	}
-}
-
-
-
-/* Category */
-
-#category-name {
-	background-color: #34332A;
-	color: #EDF2F4;
-	text-align: center;
-	border-radius: 65px;
-	margin: 20px 0;
-	padding: 0px;
-}
-
-#category-name span {
-	font-family: Montserat;
-	font-size: 2em;
-}
-
-#dishes img {
-	width: 100%;
-	height: 200px;
-}
-
-#dish-order {
-	width: 100%;
-	background-color: #D62828;
-	color: white;
-	text-align: center;
-	height: 40px;
-	line-height: 40px;
-	font-size: 20px;
-}
-
-#dishes section > div {
-	position: relative;
-	margin-bottom: 15px;
-}
-
-#dish-name {
-	position: absolute;
-	width: 100%;
-	height: 30px;
-	bottom: 40px;
-	background-color: rgba(0,0,0, 0.6);
-	color: white;
-	text-align: center;
-
 }
