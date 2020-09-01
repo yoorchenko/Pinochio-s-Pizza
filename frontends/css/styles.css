@@ -1,0 +1,187 @@
+* {
+	margin: 0;
+	padding: 0;
+	box-sizing: border-box;
+}
+body {
+	background-color: #EAE2B7;
+}
+ 
+ /* Navbar */
+#navbar {
+	background-color: #2B2D42;
+	font-family: Calibri;
+	color: #EDF2F4;
+	font-size: 2.5em;
+	padding-left: 10px;
+}
+
+/* Jumbotron */
+
+#image-wrapper {
+	position: relative;
+	text-align: center;
+	margin-top: 20px;
+}
+
+#image-wrapper > img {
+	width: 100%;
+	height: 500px;
+	border-radius: 25px;
+	object-fit: cover;
+}
+
+#order-button {
+	position: absolute;
+	width: 10%;
+	height: 40px;
+	line-height: 40px;
+	margin-right: auto;
+	margin-left: auto;
+	left: 0;
+	right: 0;
+	bottom: 30px;
+	background-color: black;
+	color: white;
+	opacity: 0.7;
+	font-size: 25px;
+	border-radius: 10px;
+}
+
+
+
+#order-button:hover {
+	border: 2px solid white;
+}
+
+/* Title */
+
+#title {
+	background-color: #34332A;
+	color: #EDF2F4;
+	text-align: center;
+	border-radius: 65px;
+	margin: 20px 0;
+	padding: 0px;
+}
+
+#title span {
+	font-family: Montserat;
+	font-size: 3em;
+}
+
+/* Tiles */
+#tiles-container {
+	margin-bottom: 20px;
+}
+
+#tiles-container section {
+	padding: 0 10px;
+}
+
+#tiles-container img {
+	height: 250px;
+	width: 100%;
+	object-fit: cover;
+}
+
+#tiles-container section > div {
+	position: relative;
+	border: 1px solid black;
+}
+
+#tiles-container section > div:hover {
+	box-shadow: 0 0 5px 5px #EDF2F4;
+}
+
+.tile-name {
+	position: absolute;
+	bottom: 0;
+	width: 100%;
+	background-color: black;
+	color: #EDF2F4;
+	text-align: center;
+	font-size: 1.5em;
+	opacity: 0.8;
+}
+
+
+/* Footer */
+footer {
+	background-color: #34332A;
+	color: #EDF2F4;
+	padding: 10px;
+	margin-top: 20px;
+}
+
+
+@media (max-width: 1200px){
+	
+	#tiles-container img {
+		height: 200px;
+	}
+
+	#title span {
+		font-size: 3em;
+	}
+
+}
+
+@media (max-width: 992px) {
+	
+	#tiles-container img {
+		height: 170px;
+	}
+
+	#title span {
+		font-size: 2.5em;
+	}
+
+	#order-button {
+		width: 15%;
+	}
+
+}
+
+@media (max-width: 768px) {
+	#image-wrapper img {
+		height: 300px;
+	}
+
+	#tiles-container img {
+		height: 300px;
+	}
+
+	#tiles-container section {
+		margin-bottom: 25px;
+	}
+
+	footer {
+		text-align: center;
+	}
+
+	footer hr {
+		background-color: white;
+		width: 80%;
+		margin: 10px auto;
+	}
+
+	#order-button {
+		width: 25%;
+	}
+	
+	#navbar {
+		font-size: 2em;
+	}
+}
+
+@media (max-width: 576px) {
+	
+	#image-wrapper img {
+		height: 250px;
+	}
+
+	#navbar {
+		font-size: 1.5em;
+	}
+}
