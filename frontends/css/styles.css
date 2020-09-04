@@ -112,6 +112,8 @@ footer {
 	color: #EDF2F4;
 	padding: 10px;
 	margin-top: 20px;
+	position: relative;
+	bottom: 10px;
 }
 
 
