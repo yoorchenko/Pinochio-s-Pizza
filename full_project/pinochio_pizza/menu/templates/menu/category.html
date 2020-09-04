@@ -23,12 +23,11 @@
 		<div id="category-name"><span>Regular Pizza</span></div>
 	{% endif %}
 	<div id="dishes" class="row">
-		{% if category == "other" %}
-			<div id="category-name" style="width: 100%;"><span>Salads</span></div>
-			{% for salad in salads %}
+		{% if category != "other" %}
+			{% for item in items %}
 				<section class="col-lg-3">
 					<div>
-						<a href="{% url 'dish' category salad.id %}">
+						<a href="{% url 'dish' category item.id %}">
 							<img src="{% static item.image %}">
 							<div id="dish-name">{{ item.name }}</div>
 							<div id="dish-order"><span>Order</span></div>
@@ -37,16 +36,41 @@
 				</section>
 			{% endfor %}
 		{% else %}
-			{% for item in items %}
-			<section class="col-lg-3">
-				<div>
-					<a href="{% url 'dish' category item.id %}">
-						<img src="{% static item.image %}">
-						<div id="dish-name">{{ item.name }}</div>
-						<div id="dish-order"><span>Order</span></div>
-					</a>
-				</div>
-			</section>
+			<div id="category-name" style="width: 100%;"><span>Salads</span></div>
+			{% for salad in salads %}
+				<section class="col-lg-3">
+					<div>
+						<a href="{% url 'dish' 'salad' salad.id %}">
+							<img src="{% static salad.image %}">
+							<div id="dish-name">{{ salad.name }}</div>
+							<div id="dish-order"><span>Order</span></div>
+						</a>
+					</div>
+				</section>
+			{% endfor %}
+			<div id="category-name" style="width: 100%;"><span>Pasta</span></div>
+			{% for pasta in pastas %}
+					<section class="col-lg-3">
+						<div>
+							<a href="{% url 'dish' 'pasta' pasta.id %}">
+								<img src="{% static pasta.image %}">
+								<div id="dish-name">{{ pasta.name }}</div>
+								<div id="dish-order"><span>Order</span></div>
+							</a>
+						</div>
+					</section>
+			{% endfor %}
+			<div id="category-name" style="width: 100%;"><span>Dinner Platters</span></div>
+			{% for dinner_platter in dinner_platters %}
+					<section class="col-lg-3">
+						<div>
+							<a href="{% url 'dish' 'dinner_platter' dinner_platter.id %}">
+								<img src="{% static dinner_platter.image %}">
+								<div id="dish-name">{{ dinner_platter.name }}</div>
+								<div id="dish-order"><span>Order</span></div>
+							</a>
+						</div>
+					</section>
 			{% endfor %}
 		{% endif %}
 	</div>

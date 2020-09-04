@@ -20,7 +20,7 @@
 </header>
 
 <div class="container">
-	<div id="category-name"><span>Regular Pizza</span></div>
+	<div id="category-name" style="text-transform: capitalize;"><span>{{ category }}</span></div>
 	<div id="item-name"><span>{{ result.name }}</span></div>
 	<div class="row">
 		<div class="col-lg-5">
@@ -46,6 +46,14 @@
 						{% endfor %}
 					</select>
 				{% endfor %}
+			{% endif %}
+
+			{% if category == "regular" or category == "sicilian" or category == "dinner_platter" %}
+				<br>
+				<input type="radio" id="small" name="size" value="small">
+  				<label for="male">Small</label><br>
+ 				<input type="radio" id="large" name="size" value="large">
+  				<label for="male">Large</label><br>
 			{% endif %}
 			<div id="total-price"><span>Price: 19.95</span></div>
 			<div id="confirm-button">

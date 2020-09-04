@@ -6,28 +6,29 @@ def index(request):
     return render(request, "menu/index.html")
 
 def category(request, category):
+
     if category == "regular":
         context = {
             "category": category,
             "items": Regular_Pizza.objects.all(),
-        }
+            }
     elif category == "sicilian":
         context = {
             "category": category,
             "items": Sicilian_Pizza.objects.all(),
-        }
+            }
     elif category == "subs":
         context = {
             "category": category,
             "items": Sub.objects.all(),
-        }
+            }
     elif category == "other":
         context = {
             "category": category,
-            "pasta": Pasta.objects.all(),
+            "pastas": Pasta.objects.all(),
             "salads": Salad.objects.all(),
             "dinner_platters": Dinner_Platter.objects.all(),
-        }
+            }
 
     return render(request, "menu/category.html", context)
 
@@ -50,6 +51,20 @@ def dish(request, category, dish_id):
             "adds": Extra_Sub.objects.all(),
             "category": category,
         }
-
+    elif category == "salad":
+        context = {
+            "result": Salad.objects.get(id=dish_id),
+            "category": category,
+        }
+    elif category == "pasta":
+        context = {
+            "result": Pasta.objects.get(id=dish_id),
+            "category": category,
+        }
+    elif category == "dinner_platter":
+        context = {
+            "result": Dinner_Platter.objects.get(id=dish_id),
+            "category": category,
+        }
 
     return render(request, "menu/dish.html", context)
