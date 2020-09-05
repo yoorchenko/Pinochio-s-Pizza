@@ -9,12 +9,32 @@
 	<title>Pinochio's Pizza</title>
 	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
 	<link rel="stylesheet" type="text/css" href="{% static 'menu/css/styles.css' %}">
+	<script type="text/javascript">
+		document.addEventListener("DOMContentLoaded", function() {
+
+			document.querySelector("#total-price").innerHTML = 'Price: ' + '{{ result.price }}' + '$';
+
+			document.querySelectorAll('input[type="radio"]').forEach(function(button) {
+				document.querySelector("#total-price").innerHTML = 'Price: ' + '{{ result.small }}' + '$';
+				button.onchange = function() {
+					if (button.value == "small") {
+						document.querySelector('#total-price').innerHTML = 'Price: ' + '{{ result.small }}' + '$'
+					}
+					if (button.value == "large") {
+						document.querySelector('#total-price').innerHTML = 'Price: ' + '{{ result.large }}' + '$'
+					}
+				}
+			})
+		})
+	</script>
 </head>
 <body>
 <header>
 	<div id="navbar">
 		<div class="container">
-			<span>Pinochio's Pizza & Subs</span>
+			<a href="{% url 'index' %}">
+				<span>Pinochio's Pizza & Subs</span>
+			</a>
 		</div>
 	</div>
 </header>
@@ -48,9 +68,9 @@
 				{% endfor %}
 			{% endif %}
 
-			{% if category == "regular" or category == "sicilian" or category == "dinner_platter" %}
+			{% if category == "regular" or category == "sicilian" or category == "dinner_platter" or category == "subs" %}
 				<br>
-				<input type="radio" id="small" name="size" value="small">
+				<input type="radio" id="small" name="size" value="small" checked>
   				<label for="male">Small</label><br>
  				<input type="radio" id="large" name="size" value="large">
   				<label for="male">Large</label><br>

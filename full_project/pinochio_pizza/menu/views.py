@@ -1,5 +1,5 @@
 from django.shortcuts import render
-from django.http import HttpResponse
+from django.http import HttpResponse, JsonResponse
 from .models import Regular_Pizza, Topping, Sicilian_Pizza, Sub, Extra_Sub, Pasta, Salad, Dinner_Platter
 
 def index(request):
@@ -68,3 +68,12 @@ def dish(request, category, dish_id):
         }
 
     return render(request, "menu/dish.html", context)
+
+def size_change(request, category, dish_id):
+    print(request.POST["size"])
+    if category == "sicilian":
+        product = Sicilian_Pizza.objects.get(id=dish_id)
+    elif category == "regular":
+        product = Regular_Pizza.objects.get(id=dish_id)
+    response = {"price"}
+    return HttpResponse("Yes")
