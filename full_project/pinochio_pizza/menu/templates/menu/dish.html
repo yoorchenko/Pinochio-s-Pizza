@@ -1,67 +1,8 @@
+{% extends 'menu/basic.html' %}
 {% load static %}
 {% load my_filters %}
 
-<!DOCTYPE html>
-<html>
-<head>
-	<meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-	<title>Pinochio's Pizza</title>
-	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
-	<link rel="stylesheet" type="text/css" href="{% static 'menu/css/styles.css' %}">
-	<script type="text/javascript">
-		document.addEventListener("DOMContentLoaded", function() {
-
-
-
-			document.querySelector("#num-price").innerHTML = '{{ result.price }}';
-			selected_price = undefined;
-
-			document.querySelectorAll('input[type="radio"]').forEach(function(button) {
-				document.querySelector("#num-price").innerHTML = '{{ result.small }}';
-				selected_price = '{{ result.small }}';
-				button.onchange = function() {
-					if (button.value == "small") {
-						document.querySelector('#num-price').innerHTML = '{{ result.small }}';
-						selected_price = '{{ result.small }}';
-					}
-					if (button.value == "large") {
-						document.querySelector('#num-price').innerHTML = '{{ result.large }}';
-						selected_price = '{{ result.large }}';
-					}
-
-					calculate_adds();
-				}
-			})
-
-			function calculate_adds() {
-					price = parseFloat(selected_price);
-					document.querySelectorAll('#add-select').forEach(function(button) {
-						if (button.value != 1) {
-							price = price + 1;
-						}
-					})
-					document.querySelector('#num-price').innerHTML = price;
-				}
-
-			document.querySelectorAll('#add-select').forEach(function(button) {
-				button.onchange = calculate_adds;
-			})
-
-		})
-	</script>
-</head>
-<body>
-<header>
-	<div id="navbar">
-		<div class="container">
-			<a href="{% url 'index' %}">
-				<span>Pinochio's Pizza & Subs</span>
-			</a>
-		</div>
-	</div>
-</header>
-
+{% block content %}
 <div class="container">
 	<div id="category-name" style="text-transform: capitalize;"><span>{{ category }}</span></div>
 	<div id="item-name"><span>{{ result.name }}</span></div>
@@ -105,55 +46,46 @@
 		</div>
 	</div>
 </div>
+<script type="text/javascript">
+		document.addEventListener("DOMContentLoaded", function() {
 
-<footer>
-	<div class="container">
-		<div class="row">
-			<section class="col-lg-3 col-md-3 col-sm-12">
-				Our phone number: <br>
-				617-876-4897
-				Our fax number is <br>
-				617-661-6188
-				Find us on Twitter <br>
-				@PinocchiosPizz
-				And Instagram <br>
-				@pinocchiospizza1
-			</section>
-			<hr>
-			<section class="col-lg-3 col-md-3 col-sm-12">
-				Our phone number: <br>
-				617-876-4897
-				Our fax number is <br>
-				617-661-6188
-				Find us on Twitter <br>
-				@PinocchiosPizz
-				And Instagram <br>
-				@pinocchiospizza1
-			</section>	
-			<hr>	
-			<section class="col-lg-3 col-md-3 col-sm-12">
-				Our phone number: <br>
-				617-876-4897
-				Our fax number is <br>
-				617-661-6188
-				Find us on Twitter <br>
-				@PinocchiosPizz
-				And Instagram <br>
-				@pinocchiospizza1
-			</section>
-			<hr>
-			<section class="col-lg-3 col-md-3 col-sm-12">
-				Our phone number: <br>
-				617-876-4897
-				Our fax number is <br>
-				617-661-6188
-				Find us on Twitter <br>
-				@PinocchiosPizz
-				And Instagram <br>
-				@pinocchiospizza1
-			</section>
-		</div>
-	</div>
-</footer>
-</body>
-</html>
+
+
+			document.querySelector("#num-price").innerHTML = '{{ result.price }}';
+			selected_price = undefined;
+
+			document.querySelectorAll('input[type="radio"]').forEach(function(button) {
+				document.querySelector("#num-price").innerHTML = '{{ result.small }}';
+				selected_price = '{{ result.small }}';
+				button.onchange = function() {
+					if (button.value == "small") {
+						document.querySelector('#num-price').innerHTML = '{{ result.small }}';
+						selected_price = '{{ result.small }}';
+					}
+					if (button.value == "large") {
+						document.querySelector('#num-price').innerHTML = '{{ result.large }}';
+						selected_price = '{{ result.large }}';
+					}
+
+					calculate_adds();
+				}
+			})
+
+			document.querySelectorAll('#add-select').forEach(function(button) {
+				button.onchange = calculate_adds;
+			})
+
+		})
+
+
+		function calculate_adds() {
+			price = parseFloat(selected_price);
+			document.querySelectorAll('#add-select').forEach(function(button) {
+				if (button.value != 1) {
+					price = price + 0.5;
+				}
+			})
+			document.querySelector('#num-price').innerHTML = price;
+		}
+	</script>
+{% endblock %}

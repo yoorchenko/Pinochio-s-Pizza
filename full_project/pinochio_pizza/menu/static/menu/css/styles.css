@@ -22,6 +22,12 @@ body {
 	color: white;
 }
 
+.glyphicon-envelope {
+    display: block;
+    margin: 0.2em auto 0px;
+
+}
+
 /* Jumbotron */
 
 #image-wrapper {
