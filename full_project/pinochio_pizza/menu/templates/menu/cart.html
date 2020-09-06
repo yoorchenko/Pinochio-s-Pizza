@@ -1,0 +1,19 @@
+{% extends 'menu/basic.html' %}
+{% load static %}
+{% load my_filters %}
+
+{% block content %}
+
+<ul>
+	{% for item in items %}
+	<li>
+		{% for price, product in item.items %}
+			{{product}} - {{ price }}
+		{% endfor %}
+	</li>
+	{% endfor %}
+</ul>
+Total: {{ total }}$
+<a href="{% url 'confirm' %}">Confirm</a>
+
+{% endblock %}

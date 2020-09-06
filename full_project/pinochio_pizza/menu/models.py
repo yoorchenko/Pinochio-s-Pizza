@@ -9,7 +9,7 @@ class Regular_Pizza(models.Model):
     image = models.CharField(max_length=86, default="menu/images/default.jpg")
 
     def __str__(self):
-        return f"{self.name} Regular {self.id}"
+        return f"{self.name} Regular id:{self.id}"
 
 
 class Sicilian_Pizza(models.Model):

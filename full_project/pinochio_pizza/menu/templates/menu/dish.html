@@ -14,35 +14,36 @@
 		</div>
 		<div class="col-lg-5" id="customization">
 			<div id="category-name"><span>Customize</span></div>
-			{% if category == "regular" or category == "sicilian" %}
-				{% for i in result.topping_quantity|times %}
-					<select>
-						{% for add in adds %}
-							<option value="{{ add.id }}">{{ add.name }}</option>
-						{% endfor %}
-					</select>
-				{% endfor %}
-			{% elif category == "subs" %}
-				{% for i in 3|times %}
-					<select id="add-select">
-						{% for add in adds %}
-							<option value="{{ add.id }}">{{ add.name }}</option>
-						{% endfor %}
-					</select>
-				{% endfor %}
-			{% endif %}
+			<form action="{% url 'order' category result.id %}" method="post">
+				{% csrf_token %}
+				{% if category == "regular" or category == "sicilian" %}
+					{% for i in result.topping_quantity|times %}
+						<select name="{{i}}add">
+							{% for add in adds %}
+								<option value="{{ add.id }}">{{ add.name }}</option>
+							{% endfor %}
+						</select>
+					{% endfor %}
+				{% elif category == "subs" %}
+					{% for i in 3|times %}
+						<select id="add-select" name="{{ i }}add">
+							{% for add in adds %}
+								<option value="{{ add.id }}">{{ add.name }}</option>
+							{% endfor %}
+						</select>
+					{% endfor %}
+				{% endif %}
 
-			{% if category == "regular" or category == "sicilian" or category == "dinner_platter" or category == "subs" %}
-				<br>
-				<input type="radio" id="small" name="size" value="small" checked>
-  				<label for="male">Small</label><br>
- 				<input type="radio" id="large" name="size" value="large">
-  				<label for="male">Large</label><br>
-			{% endif %}
-			<div id="total-price"><span>Price: <span id="num-price">19.95</span>$</span></div>
-			<div id="confirm-button">
-				<span>Confirm</span>
-			</div>
+				{% if category == "regular" or category == "sicilian" or category == "dinner_platter" or category == "subs" %}
+					<br>
+					<input type="radio" id="small" name="size" value="small" checked>
+  					<label for="small">Small</label><br>
+ 					<input type="radio" id="large" name="size" value="large">
+  					<label for="large">Large</label><br>
+				{% endif %}
+				<div id="total-price"><span>Price: <span id="num-price">19.95</span>$</span></div>
+				<input type="submit" id="confirm-button" value="Order"></input>
+			</form>
 		</div>
 	</div>
 </div>

@@ -69,11 +69,72 @@ def dish(request, category, dish_id):
 
     return render(request, "menu/dish.html", context)
 
-def size_change(request, category, dish_id):
-    print(request.POST["size"])
-    if category == "sicilian":
-        product = Sicilian_Pizza.objects.get(id=dish_id)
-    elif category == "regular":
-        product = Regular_Pizza.objects.get(id=dish_id)
-    response = {"price"}
-    return HttpResponse("Yes")
+def order(request, category, dish_id):
+    if category == "regular" or category == "sicilian":
+        size = request.POST["size"]
+        toppings = []
+        for i in range(Regular_Pizza.objects.get(id=dish_id).topping_quantity):
+            toppings.append(Topping.objects.get(id = int(request.POST[f"{i}add"])))
+        if category == "regular":
+            product = Regular_Pizza.objects.get(id=dish_id)
+        else:
+            product = Sicilian_Pizza.objects.get(id=dish_id)
+        price = getattr(product, size)
+        order = {"item": f"{category} <{product.name}> {size} toppings: {toppings}", "price": price}
+        request.session["cart"].append(order)
+        request.session["total"] += price
+        request.session.modified = True
+    elif category == "subs":
+        product = Sub.objects.get(id=dish_id)
+        size = request.POST["size"]
+        adds = []
+        price = getattr(product, size)
+        for i in range(3):
+            add_id = int(request.POST[f"{i}add"])
+            if add_id != 1:
+                price += 0.5
+            adds.append(Extra_Sub.objects.get(id = add_id))
+        order = {"item": f"<{product.name}> {size} adds: {adds}", "price": price}
+        request.session["cart"].append(order)
+        request.session["total"] += price
+        request.session.modified = True
+    elif category == "salad":
+        product = Salad.objects.get(id=dish_id)
+        price = product.price
+        order = {"item": f"<{product.name}>", "price": price}
+        request.session["cart"].append(order)
+        request.session["total"] += price
+        request.session.modified = True
+    elif category == "pasta":
+        product = Pasta.objects.get(id=dish_id)
+        price = product.price
+        order = {"item": f"<{product.name}>", "price": price}
+        request.session["cart"].append(order)
+        request.session["total"] += price
+        request.session.modified = True
+    elif category == "dinner_platter":
+        product = Dinner_Platter.objects.get(id=dish_id)
+        size = request.POST["size"]
+        price = getattr(product, size)
+        order = {"item": f"<{product.name}> {size}", "price": price}
+        request.session["cart"].append(order)
+        request.session["total"] += price
+        request.session.modified = True
+    for item in request.session["cart"]:
+        print(item)
+
+
+    return render(request, "menu/index.html")
+
+def cart(request):
+
+    order = request.session["cart"]
+    total = request.session["total"]
+    total = round(total, 2)
+
+    context = {
+        "items": order,
+        "total": total,
+    }
+
+    return render(request, "menu/cart.html", context)

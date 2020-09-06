@@ -23,6 +23,7 @@ class Item(models.Model):
 class Order(models.Model):
     items = models.ManyToManyField(Item, blank=True, related_name="orders")
     orderer_id = models.IntegerField()
+    total = models.FloatField()
     done = models.BooleanField(default=False)
 
     def __str__(self):
