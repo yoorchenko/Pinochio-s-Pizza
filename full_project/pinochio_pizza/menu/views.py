@@ -120,8 +120,7 @@ def order(request, category, dish_id):
         request.session["cart"].append(order)
         request.session["total"] += price
         request.session.modified = True
-    for item in request.session["cart"]:
-        print(item)
+
 
 
     return render(request, "menu/index.html")

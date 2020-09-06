@@ -11,6 +11,7 @@ https://docs.djangoproject.com/en/3.1/ref/settings/
 """
 
 from pathlib import Path
+import os
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve(strict=True).parent.parent
@@ -27,6 +28,13 @@ DEBUG = True
 
 ALLOWED_HOSTS = []
 
+
+EMAIL_BACKEND = "sendgrid_backend.SendgridBackend"
+SENDGRID_API_KEY = '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' # this is exactly the value 'apikey'
+SENDGRID_SANDBOX_MODE_IN_DEBUG=False
+
+# echo to stdout or any other file-like object that is passed to the backend via the stream kwarg.
+#SENDGRID_ECHO_TO_STDOUT=True
 
 # Application definition
 
