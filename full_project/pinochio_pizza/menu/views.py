@@ -1,8 +1,10 @@
 from django.shortcuts import render
+from django.contrib.auth import logout
 from django.http import HttpResponse, JsonResponse
 from .models import Regular_Pizza, Topping, Sicilian_Pizza, Sub, Extra_Sub, Pasta, Salad, Dinner_Platter
 
 def index(request):
+    print(request.user)
     return render(request, "menu/index.html")
 
 def category(request, category):
@@ -70,17 +72,22 @@ def dish(request, category, dish_id):
     return render(request, "menu/dish.html", context)
 
 def order(request, category, dish_id):
+    if not request.session.get("cart"):
+        request.session["cart"] = []
+        request.session["total"] = 0
     if category == "regular" or category == "sicilian":
         size = request.POST["size"]
         toppings = []
-        for i in range(Regular_Pizza.objects.get(id=dish_id).topping_quantity):
-            toppings.append(Topping.objects.get(id = int(request.POST[f"{i}add"])))
         if category == "regular":
+            for i in range(Regular_Pizza.objects.get(id=dish_id).topping_quantity):
+                toppings.append(Topping.objects.get(id=int(request.POST[f"{i}add"])).name)
             product = Regular_Pizza.objects.get(id=dish_id)
         else:
+            for i in range(Sicilian_Pizza.objects.get(id=dish_id).topping_quantity):
+                toppings.append(Topping.objects.get(id=int(request.POST[f"{i}add"])).name)
             product = Sicilian_Pizza.objects.get(id=dish_id)
         price = getattr(product, size)
-        order = {"item": f"{category} <{product.name}> {size} toppings: {toppings}", "price": price}
+        order = {"item": f"{category} {product.name} {size} toppings: {toppings}", "price": price}
         request.session["cart"].append(order)
         request.session["total"] += price
         request.session.modified = True
@@ -93,22 +100,22 @@ def order(request, category, dish_id):
             add_id = int(request.POST[f"{i}add"])
             if add_id != 1:
                 price += 0.5
-            adds.append(Extra_Sub.objects.get(id = add_id))
-        order = {"item": f"<{product.name}> {size} adds: {adds}", "price": price}
+            adds.append(Extra_Sub.objects.get(id = add_id).name)
+        order = {"item": f"{product.name} {size} adds: {adds}", "price": price}
         request.session["cart"].append(order)
         request.session["total"] += price
         request.session.modified = True
     elif category == "salad":
         product = Salad.objects.get(id=dish_id)
         price = product.price
-        order = {"item": f"<{product.name}>", "price": price}
+        order = {"item": f"{product.name}", "price": price}
         request.session["cart"].append(order)
         request.session["total"] += price
         request.session.modified = True
     elif category == "pasta":
         product = Pasta.objects.get(id=dish_id)
         price = product.price
-        order = {"item": f"<{product.name}>", "price": price}
+        order = {"item": f"{product.name}", "price": price}
         request.session["cart"].append(order)
         request.session["total"] += price
         request.session.modified = True
@@ -116,7 +123,7 @@ def order(request, category, dish_id):
         product = Dinner_Platter.objects.get(id=dish_id)
         size = request.POST["size"]
         price = getattr(product, size)
-        order = {"item": f"<{product.name}> {size}", "price": price}
+        order = {"item": f"{product.name} {size}", "price": price}
         request.session["cart"].append(order)
         request.session["total"] += price
         request.session.modified = True

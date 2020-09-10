@@ -1,9 +1,14 @@
 from django.shortcuts import render
-from django.http import HttpResponse
+from django.contrib.auth.forms import UserCreationForm
+from django.http import HttpResponseRedirect
+from django.urls import reverse
+from django.contrib.auth import authenticate, login
 from .models import Item, Order
-from telegram.ext import Updater
-from django.conf import settings
-from django.core.mail import send_mail
+
+import os
+from sendgrid import SendGridAPIClient
+from sendgrid.helpers.mail import Mail
+
 
 def place_order(request):
     new_order = Order(orderer_id = 4, total = request.session["total"])
@@ -12,22 +17,58 @@ def place_order(request):
         new_item = Item(name = item["item"], price = item["price"])
         new_item.save()
         new_order.items.add(new_item)
+    total = request.session["total"]
     request.session["cart"] = []
     request.session["total"] = 0
-    context = {"total": 0}
     items = new_order.items.all()
     message = ""
     for item in items:
-        message += f"{item} \n"
-    message += f"{context['total']}$"
+        message += f"{item} <br>"
+    message += f"{total}$"
+    context = {"total": 0}
 
     print(items)
 
-    send_mail(
-        'Subject here',
-        message,
-        'mikhailyurchenko2601@gmail.com',
-        ['mikhailyurchenko2601@gmail.com'],
-        fail_silently=False,
-    )
+    message = Mail(
+        from_email='mihailstudent2601@gmail.com',
+        to_emails='mihailstudent2601@gmail.com',
+        subject='Sending with Twilio SendGrid is Fun',
+        html_content=f'<strong>{ message }</strong>')
+    try:
+        sg = SendGridAPIClient('')
+        response = sg.send(message)
+    except Exception as e:
+        print(e.message)
+
+
+
+
+
     return render(request, "menu/cart.html", context)
+
+
+def signupview(request):
+    if request.method == 'POST':
+        form = UserCreationForm(request.POST)
+        if form.is_valid():
+            form.save()
+            username = form.cleaned_data.get('username')
+            raw_password = form.cleaned_data.get('password1')
+            user = authenticate(username=username, password=raw_password)
+            login(request, user)
+            return HttpResponseRedirect(reverse("index"))
+    else:
+        form = UserCreationForm()
+    return render(request, 'menu/signup.html', {'form': form})
+
+
+def loginview(request):
+    if request.method == "POST":
+        username = request.POST["username"]
+        password = request.POST["password"]
+        user = authenticate(username = username, password = password)
+        if user:
+            login(request, user)
+            return HttpResponseRedirect(reverse("index"))
+    else:
+        return render(request, "menu/login.html")

@@ -3,8 +3,8 @@
 {% load my_filters %}
 
 {% block content %}
-
-<ul>
+<div class="container">
+<ol style="margin-top: 10px">
 	{% for item in items %}
 	<li>
 		{% for price, product in item.items %}
@@ -12,8 +12,9 @@
 		{% endfor %}
 	</li>
 	{% endfor %}
-</ul>
+</ol>
 Total: {{ total }}$
-<a href="{% url 'confirm' %}">Confirm</a>
+<br><a href="{% url 'confirm' %}">Confirm</a>
 
+</div>
 {% endblock %}

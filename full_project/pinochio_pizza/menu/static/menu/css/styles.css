@@ -216,6 +216,40 @@ footer {
 }
 
 
+/* Login Page */
+#login-form input {
+	width: 60%;
+}
+
+#login-form label {
+	margin-top: 15px;
+}
+
+#login-form button {
+	margin-top: 15px;
+	padding: 5px;
+}
+
+
+#signup-form input {
+	width: 60%;
+}
+
+#signup-form label {
+	margin-top: 15px;
+}
+
+#signup-form button {
+	margin-top: 15px;
+	padding: 5px;
+}
+
+#signup-form li {
+	list-style-type: none
+}
+
+
+
 /* Media Queries */
 
 @media (max-width: 1200px){

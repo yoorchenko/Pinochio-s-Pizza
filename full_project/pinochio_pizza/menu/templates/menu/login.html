@@ -1,0 +1,15 @@
+{% extends 'menu/basic.html' %}
+{% load static %}
+
+{% block content %}
+<div class="container" style="text-align: center;">
+	<form action="{% url 'login' %}" method="post" id="login-form">
+    	{% csrf_token %}
+    	<label for="username-input">Username</label><br>
+    	<input id="username-input" name="username" type="text" placeholder="Type your username"><br>
+    	<label for="password-input">Password</label><br>
+    	<input id="password-input" name="password" type="password" placeholder="Type your password"><br>
+    	<button type="submit">Login</button>
+	</form>
+</div>
+{% endblock content %}
