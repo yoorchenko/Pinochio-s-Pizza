@@ -2,7 +2,7 @@ from django.shortcuts import render
 from django.contrib.auth.forms import UserCreationForm
 from django.http import HttpResponseRedirect
 from django.urls import reverse
-from django.contrib.auth import authenticate, login
+from django.contrib.auth import authenticate, login, logout
 from .models import Item, Order
 
 import os
@@ -11,7 +11,7 @@ from sendgrid.helpers.mail import Mail
 
 
 def place_order(request):
-    new_order = Order(orderer_id = 4, total = request.session["total"])
+    new_order = Order(total = request.session["total"], orderer = request.user)
     new_order.save()
     for item in request.session["cart"]:
         new_item = Item(name = item["item"], price = item["price"])
@@ -24,7 +24,7 @@ def place_order(request):
     message = ""
     for item in items:
         message += f"{item} <br>"
-    message += f"{total}$"
+    message += f"{total}$<br> Orderer: {request.user}"
     context = {"total": 0}
 
     print(items)
@@ -72,3 +72,7 @@ def loginview(request):
             return HttpResponseRedirect(reverse("index"))
     else:
         return render(request, "menu/login.html")
+
+def logoutview(request):
+    logout(request)
+    return HttpResponseRedirect(reverse("login"))

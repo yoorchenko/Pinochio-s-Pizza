@@ -17,9 +17,15 @@
 			<a href="{% url 'index' %}">
 				<span>Pinochio's Pizza & Subs</span>
 			</a>
+
 			<a href="{% url 'cart' %}" style="float: right;">
 				<span class="glyphicon glyphicon-envelope"></span>
 			</a>
+			{% if user.is_authenticated %}
+				<a href="{% url 'logout' %}">
+					<span style="float: right; margin-right: 10px; color: yellow;">Logout</span>
+				</a>
+			{% endif %}
 		</div>
 	</div>
 </header>

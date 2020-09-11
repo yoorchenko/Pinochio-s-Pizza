@@ -22,9 +22,10 @@ class Item(models.Model):
 
 class Order(models.Model):
     items = models.ManyToManyField(Item, blank=True, related_name="orders")
-    orderer_id = models.IntegerField()
-    total = models.FloatField()
+    #orderer_id = models.IntegerField()
+    total = models.FloatField(blank=True)
     done = models.BooleanField(default=False)
+    orderer = models.CharField(max_length=64, blank=True)
 
     def __str__(self):
         if self.done:

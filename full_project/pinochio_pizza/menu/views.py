@@ -1,10 +1,13 @@
 from django.shortcuts import render
 from django.contrib.auth import logout
-from django.http import HttpResponse, JsonResponse
+from django.http import HttpResponse, JsonResponse, HttpResponseRedirect
+from django.urls import reverse
 from .models import Regular_Pizza, Topping, Sicilian_Pizza, Sub, Extra_Sub, Pasta, Salad, Dinner_Platter
 
 def index(request):
     print(request.user)
+    if not request.user.is_authenticated:
+        return HttpResponseRedirect(reverse("login"))
     return render(request, "menu/index.html")
 
 def category(request, category):

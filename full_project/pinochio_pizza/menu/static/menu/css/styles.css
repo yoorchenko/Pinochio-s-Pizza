@@ -230,6 +230,9 @@ footer {
 	padding: 5px;
 }
 
+#login-signup {
+	margin-top: 15px;
+}
 
 #signup-form input {
 	width: 60%;
@@ -324,6 +327,6 @@ footer {
 	}
 
 	#navbar {
-		font-size: 1.5em;
+		font-size: 1.3em;
 	}
 }
