@@ -135,6 +135,7 @@ def order(request, category, dish_id):
 
     return render(request, "menu/index.html")
 
+
 def cart(request):
 
     order = request.session["cart"]

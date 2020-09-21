@@ -27,15 +27,13 @@ def place_order(request):
     message += f"{total}$<br> Orderer: {request.user}"
     context = {"total": 0}
 
-    print(items)
-
     message = Mail(
         from_email='mihailstudent2601@gmail.com',
         to_emails='mihailstudent2601@gmail.com',
         subject='Sending with Twilio SendGrid is Fun',
         html_content=f'<strong>{ message }</strong>')
     try:
-        sg = SendGridAPIClient('')
+        sg = SendGridAPIClient('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')
         response = sg.send(message)
     except Exception as e:
         print(e.message)

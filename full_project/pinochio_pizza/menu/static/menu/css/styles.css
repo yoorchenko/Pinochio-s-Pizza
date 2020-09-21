@@ -124,7 +124,6 @@ footer {
 	color: #EDF2F4;
 	padding: 10px;
 	margin-top: 20px;
-	position: relative;
 	bottom: 10px;
 }
 
@@ -256,6 +255,18 @@ footer {
 /* Media Queries */
 
 @media (max-width: 1200px){
+
+	body {
+		position: relative;
+		padding-bottom: 120px;
+	}
+
+	footer {
+		position: absolute;
+		bottom: 0;
+		right: 0;
+		width: 100%;
+	}
 	
 	/* Index */
 	#tiles-container img {
@@ -269,6 +280,10 @@ footer {
 }
 
 @media (max-width: 992px) {
+
+	body {
+		padding-bottom: 190px;
+	}
 	
 	/* Index */
 	#tiles-container img {
@@ -286,6 +301,10 @@ footer {
 }
 
 @media (max-width: 768px) {
+
+	body {
+		padding-bottom: 500px;
+	}
 
 	/* Index */
 	#image-wrapper img {
