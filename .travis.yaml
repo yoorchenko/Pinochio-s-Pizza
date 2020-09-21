@@ -1,9 +1,6 @@
 language: python
-python:
-    - 3.8.1
+python: - 3.8.1
 before_install: cd full_project/pinochio_pizza
-install:
-  - pip install -r requirements.txt
+install: pip install -r requirements.txt
 before_script: cd full_project/pinochio_pizza
-script:
-  - python manage.py test
+script: python manage.py test
