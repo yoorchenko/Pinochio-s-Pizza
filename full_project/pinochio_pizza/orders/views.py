@@ -26,6 +26,7 @@ def place_order(request):
         message += f"{item} <br>"
     message += f"{total}$<br> Orderer: {request.user}"
     context = {"total": 0}
+    print()
 
     message = Mail(
         from_email='mihailstudent2601@gmail.com',
