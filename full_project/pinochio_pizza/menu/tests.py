@@ -100,7 +100,7 @@ class ModelsTestCase(TestCase):
         total += pizza_2s.small
 
         session = c.session
-        self.assertEqual(len(session["cart"]), 4)
+        self.assertEqual(len(session["cart"]), 5)
         self.assertEqual(session["total"], total)
 
 
