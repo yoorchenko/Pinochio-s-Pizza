@@ -1,0 +1,351 @@
+* {
+	margin: 0;
+	padding: 0;
+	box-sizing: border-box;
+}
+body {
+	background-color: #EAE2B7;
+}
+ 
+
+ /* Navbar */
+#navbar {
+	background-color: #2B2D42;
+	font-family: Calibri;
+	color: #EDF2F4;
+	font-size: 2.5em;
+	padding-left: 10px;
+}
+
+#navbar a {
+	text-decoration: none;
+	color: white;
+}
+
+.glyphicon-envelope {
+    display: block;
+    margin: 0.2em auto 0px;
+
+}
+
+/* Jumbotron */
+
+#image-wrapper {
+	position: relative;
+	text-align: center;
+	margin-top: 20px;
+}
+
+#image-wrapper > img {
+	width: 100%;
+	height: 500px;
+	border-radius: 25px;
+	object-fit: cover;
+}
+
+#order-button {
+	position: absolute;
+	width: 10%;
+	height: 40px;
+	line-height: 40px;
+	margin-right: auto;
+	margin-left: auto;
+	left: 0;
+	right: 0;
+	bottom: 30px;
+	background-color: black;
+	color: white;
+	opacity: 0.7;
+	font-size: 25px;
+	border-radius: 10px;
+}
+
+
+
+#order-button:hover {
+	border: 2px solid white;
+}
+
+/* Title */
+
+#title {
+	background-color: #34332A;
+	color: #EDF2F4;
+	text-align: center;
+	border-radius: 65px;
+	margin: 20px 0;
+	padding: 0px;
+}
+
+#title span {
+	font-family: Montserat;
+	font-size: 3em;
+}
+
+/* Tiles */
+#tiles-container {
+	margin-bottom: 20px;
+}
+
+#tiles-container section {
+	padding: 0 10px;
+}
+
+#tiles-container img {
+	height: 250px;
+	width: 100%;
+	object-fit: cover;
+}
+
+#tiles-container section > div {
+	position: relative;
+	border: 1px solid black;
+}
+
+#tiles-container section > div:hover {
+	box-shadow: 0 0 5px 5px #EDF2F4;
+}
+
+.tile-name {
+	position: absolute;
+	bottom: 0;
+	width: 100%;
+	background-color: black;
+	color: #EDF2F4;
+	text-align: center;
+	font-size: 1.5em;
+	opacity: 0.8;
+}
+
+
+/* Footer */
+footer {
+	background-color: #34332A;
+	color: #EDF2F4;
+	padding: 10px;
+	margin-top: 20px;
+	bottom: 10px;
+}
+
+
+
+
+
+/* Category */
+
+#category-name {
+	background-color: #34332A;
+	color: #EDF2F4;
+	text-align: center;
+	border-radius: 65px;
+	margin: 20px 0;
+	padding: 0px;
+}
+
+#category-name span {
+	font-family: Montserat;
+	font-size: 2em;
+}
+
+#dishes img {
+	width: 100%;
+	height: 200px;
+	object-fit: cover;
+}
+
+#dish-order {
+	width: 100%;
+	background-color: #D62828;
+	color: white;
+	text-align: center;
+	height: 40px;
+	line-height: 40px;
+	font-size: 20px;
+}
+
+#dishes section > div {
+	position: relative;
+	margin-bottom: 15px;
+}
+
+#dish-name {
+	position: absolute;
+	width: 100%;
+	height: 30px;
+	bottom: 40px;
+	background-color: rgba(0,0,0, 0.6);
+	color: white;
+	text-align: center;
+
+}
+
+
+/* Dish */
+#item-name {
+	font-size: 30px;
+}
+
+#dish-img {
+	margin-top: 20px;
+}
+
+#dish-img img {
+	width: 100%;
+	height: 350px;
+	object-fit: cover;
+}
+
+#customization select {
+	width: 60%;
+	margin-bottom: 20px;
+}
+
+#total-price {
+	font-size: 30px;
+}
+
+#confirm-button {
+	width: 60%;
+	text-align: center;
+	height: 40px;
+	line-height: 40px;
+	color: white;
+	background-color: #D62828;
+	margin-top: 15px;
+}
+
+
+/* Login Page */
+#login-form input {
+	width: 60%;
+}
+
+#login-form label {
+	margin-top: 15px;
+}
+
+#login-form button {
+	margin-top: 15px;
+	padding: 5px;
+}
+
+#login-signup {
+	margin-top: 15px;
+}
+
+#signup-form input {
+	width: 60%;
+}
+
+#signup-form label {
+	margin-top: 15px;
+}
+
+#signup-form button {
+	margin-top: 15px;
+	padding: 5px;
+}
+
+#signup-form li {
+	list-style-type: none
+}
+
+
+
+/* Media Queries */
+
+@media (max-width: 1200px){
+
+	body {
+		position: relative;
+		padding-bottom: 120px;
+	}
+
+	footer {
+		position: absolute;
+		bottom: 0;
+		right: 0;
+		width: 100%;
+	}
+	
+	/* Index */
+	#tiles-container img {
+		height: 200px;
+	}
+
+	#title span {
+		font-size: 3em;
+	}
+
+}
+
+@media (max-width: 992px) {
+
+	body {
+		padding-bottom: 190px;
+	}
+	
+	/* Index */
+	#tiles-container img {
+		height: 170px;
+	}
+
+	#title span {
+		font-size: 2.5em;
+	}
+
+	#order-button {
+		width: 15%;
+	}
+
+}
+
+@media (max-width: 768px) {
+
+	body {
+		padding-bottom: 500px;
+	}
+
+	/* Index */
+	#image-wrapper img {
+		height: 300px;
+	}
+
+	#tiles-container img {
+		height: 300px;
+	}
+
+	#tiles-container section {
+		margin-bottom: 25px;
+	}
+
+	footer {
+		text-align: center;
+	}
+
+	footer hr {
+		background-color: white;
+		width: 80%;
+		margin: 10px auto;
+	}
+
+	#order-button {
+		width: 25%;
+	}
+	
+	#navbar {
+		font-size: 2em;
+	}
+}
+
+@media (max-width: 576px) {
+	
+	/* Index */
+	#image-wrapper img {
+		height: 250px;
+	}
+
+	#navbar {
+		font-size: 1.3em;
+	}
+}
