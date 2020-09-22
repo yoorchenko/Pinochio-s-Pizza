@@ -86,10 +86,21 @@ WSGI_APPLICATION = 'pinochio_pizza.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
+        'ENGINE': 'django.db.backends.postgresql_psycopg2',
+        'NAME': 'd78udj8ieal3qo',
+        'USER': 'gknfugzcezozns',
+        'PASSWORD': '6f2179a42a5d266d72994d2fd13be6014f6aa16db5f91198574f7dae49fe3a7e',
+        'HOST': 'ec2-54-246-85-151.eu-west-1.compute.amazonaws.com',
+        'PORT': '5432',
     }
 }
+
+# DATABASES = {
+#     'default': {
+#         'ENGINE': 'django.db.backends.sqlite3',
+#         'NAME': BASE_DIR / 'db.sqlite3',
+#     }
+# }
 
 
 # Password validation
