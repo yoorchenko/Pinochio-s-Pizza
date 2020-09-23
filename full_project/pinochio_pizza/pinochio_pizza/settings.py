@@ -25,9 +25,9 @@ BASE_DIR = Path(__file__).resolve(strict=True).parent.parent
 SECRET_KEY = 'kfns4^ue+$v_%00mtlgrpq-k9v&zw!lx7_w@nfvn#k+7r%nf88'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = False
+DEBUG = True
 
-ALLOWED_HOSTS = ['*']
+ALLOWED_HOSTS = ['localhost', '127.0.0.1', 'morning-refuge-43646.herokuapp.com']
 
 
 EMAIL_BACKEND = "sendgrid_backend.SendgridBackend"

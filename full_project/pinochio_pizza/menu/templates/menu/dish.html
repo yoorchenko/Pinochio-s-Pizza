@@ -18,7 +18,7 @@
 				{% csrf_token %}
 				{% if category == "regular" or category == "sicilian" %}
 					{% for i in result.topping_quantity|times %}
-						<select name="{{i}}add">
+						<select class="pizza-topping" name="{{i}}add">
 							{% for add in adds %}
 								<option value="{{ add.id }}">{{ add.name }}</option>
 							{% endfor %}
@@ -49,6 +49,19 @@
 </div>
 <script type="text/javascript">
 		document.addEventListener("DOMContentLoaded", function() {
+
+			document.querySelectorAll(".pizza-topping").forEach(function(button) {
+				document.querySelector("#confirm-button").disabled = true;
+				button.onchange = function() {
+					document.querySelectorAll(".pizza-topping").forEach(function(topping) {
+						if (topping.value === "1") {
+							document.querySelector("#confirm-button").disabled = true;
+							throw new Error('fail');
+						}
+					})
+					document.querySelector("#confirm-button").disabled = false;
+				}
+			})
 
 
 
