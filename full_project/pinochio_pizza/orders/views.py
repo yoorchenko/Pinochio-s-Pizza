@@ -28,17 +28,17 @@ def place_order(request):
     context = {"total": 0}
 
 
-    message = Mail(
-        from_email='michaelorderer@gmail.com',
-        to_emails='michaelorderer@gmail.com',
-        subject='Sending with Twilio SendGrid is Fun',
-        html_content=f'<strong>{ message }</strong>')
-    try:
-        sg = SendGridAPIClient('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')
-        response = sg.send(message)
-    except Exception as e:
-        print(e.message)
-
+    # message = Mail(
+    #     from_email='michaelorderer@gmail.com',
+    #     to_emails='michaelorderer@gmail.com',
+    #     subject='Sending with Twilio SendGrid is Fun',
+    #     html_content=f'<strong>{ message }</strong>')
+    # try:
+    #     sg = SendGridAPIClient('')
+    #     response = sg.send(message)
+    # except Exception as e:
+    #     print(e.message)
+    #
 
 
 
